@@ -11,6 +11,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
+import com.vaadin.tutorial.crm.ui.views.calendar.CalendarView;
 import com.vaadin.tutorial.crm.ui.views.dashboard.DashboardView;
 import com.vaadin.tutorial.crm.ui.views.list.ListView;
 
@@ -27,8 +28,8 @@ import com.vaadin.tutorial.crm.ui.views.list.ListView;
 public class MainLayout extends AppLayout {
 
     public MainLayout() {
-        createHeader();
-        createDrawer();
+        this.createHeader();
+        this.createDrawer();
     }
 
     private void createHeader() {
@@ -43,17 +44,23 @@ public class MainLayout extends AppLayout {
         header.expand(logo);
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
-        addToNavbar(header);
+        this.addToNavbar(header);
     }
 
     private void createDrawer() {
         RouterLink listLink = new RouterLink("List", ListView.class);
+        RouterLink dashboard = new RouterLink("Dashboard", DashboardView.class);
+        RouterLink calendarLink = new RouterLink("Calendar", CalendarView.class);
+
         listLink.setHighlightCondition(HighlightConditions.sameLocation());
 
-        addToDrawer(new VerticalLayout(
+        VerticalLayout verticalLayout = new VerticalLayout(
                 listLink,
-                new RouterLink("Dashboard", DashboardView.class)
-        ));
+                dashboard,
+                calendarLink
+        );
+
+        this.addToDrawer(verticalLayout);
     }
 
 
