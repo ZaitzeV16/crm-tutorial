@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.pkgCalendarEntry.mainCalendarEntry.model;
 
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.calendar.model.Calendar;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.pkgCalendarEntry.calendarEntry.model.CalendarEntry;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,7 +41,11 @@ public class MainCalendarEntry extends CalendarEntry {
         super(start, end);
     }
 
-//    public boolean isBase() {
+    public MainCalendarEntry(@NotNull LocalDateTime start, @NotNull LocalDateTime end, Calendar calendar) {
+        super(start, end, calendar);
+    }
+
+    //    public boolean isBase() {
 //        return this.base == null;
 //    }
 

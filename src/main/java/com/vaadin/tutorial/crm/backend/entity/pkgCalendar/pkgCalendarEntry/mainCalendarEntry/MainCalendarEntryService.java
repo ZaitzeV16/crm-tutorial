@@ -5,8 +5,9 @@ import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.pkgCalendarEntry.mainC
 import com.vaadin.tutorial.crm.backend.library.base.service.BaseEntityService;
 import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 public class MainCalendarEntryService extends BaseEntityService<MainCalendarEntry, Long, MainCalendarEntryRepo> {
 
     @Autowired

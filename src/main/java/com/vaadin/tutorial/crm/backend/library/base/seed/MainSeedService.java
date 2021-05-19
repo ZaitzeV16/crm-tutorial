@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.backend.library.base.seed;
 
+import com.vaadin.tutorial.crm.backend.library.exception.ConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -52,7 +53,7 @@ public class MainSeedService {
 
 
         List<?> currentSeed;
-        for (BaseSeedService<?, ?> seedService : this.notSkippedSeedServices) {
+        for (BaseSeedService<?, ?> seedService : orderedNotSkippedSeedServices) {
             if (Arrays.stream(exclusions).anyMatch(exclusion -> exclusion.equals(seedService.getClass()))) {
                 continue;
             }
@@ -61,14 +62,38 @@ public class MainSeedService {
     }
 
     private int compareSeedServices(BaseSeedService<?, ?> ssi1, BaseSeedService<?, ?> ssi2) {
-        SeedService annotation1 = ssi1.getClass().getAnnotation(SeedService.class);
-        SeedService annotation2 = ssi2.getClass().getAnnotation(SeedService.class);
+        Class<? extends BaseSeedService> ssi1Class = ssi1.getClass();
+        SeedService annotation1 = ssi1Class.getAnnotation(SeedService.class);
 
-        if (Arrays.asList(annotation1.dependsOn()).contains(ssi2.getClass())) {
+        Class<? extends BaseSeedService> ssi2Class = ssi2.getClass();
+        SeedService annotation2 = ssi2Class.getAnnotation(SeedService.class);
+
+        boolean firstDependsOnSecond = Arrays.asList(annotation1.dependsOn()).contains(ssi2Class);
+        boolean secondDependsOnFirst = Arrays.asList(annotation2.dependsOn()).contains(ssi1Class);
+
+        if (firstDependsOnSecond && secondDependsOnFirst) {
+            String ssi1ClassCanonicalName = ssi1Class.getCanonicalName();
+            String ssi2ClassCanonicalName = ssi2Class.getCanonicalName();
+            String msg = String.join(
+                    " ",
+                    List.of(
+                            "Dependency cycle between SeedServices!!:",
+                            ssi1ClassCanonicalName,
+                            "depends on",
+                            ssi2ClassCanonicalName,
+                            "and",
+                            ssi2ClassCanonicalName,
+                            "depends on",
+                            ssi1ClassCanonicalName
+                    ));
+            throw new ConflictException(msg);
+        }
+
+        if (firstDependsOnSecond) {
             return 1;
         }
 
-        if (Arrays.asList(annotation2.dependsOn()).contains(ssi1.getClass())) {
+        if (secondDependsOnFirst) {
             return -1;
         }
         
