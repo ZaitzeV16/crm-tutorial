@@ -1,10 +1,10 @@
 package com.vaadin.tutorial.crm.backend.library.base.service;
 
-import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 import com.vaadin.tutorial.crm.backend.library.base.dto.base.BaseDTO;
 import com.vaadin.tutorial.crm.backend.library.base.entity.BaseEntity;
 import com.vaadin.tutorial.crm.backend.library.base.repository.BaseJpaRepo;
 import com.vaadin.tutorial.crm.backend.library.exception.NotFoundException;
+import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -91,5 +91,10 @@ public abstract class BaseService<MODEL extends BaseEntity, ID, REPO extends Bas
     }
     // endregion DELETE
     // endregion CRUD
+
+
+    public long count() {
+        return this.repo.count();
+    }
 
 }

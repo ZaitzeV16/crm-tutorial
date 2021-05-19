@@ -2,7 +2,7 @@ package com.vaadin.tutorial.crm.ui.views.list;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.data.provider.ListDataProvider;
-import com.vaadin.tutorial.crm.backend.entity.Contact;
+import com.vaadin.tutorial.crm.backend.entity._leftover.contact.model.Contact;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

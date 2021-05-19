@@ -1,11 +1,11 @@
 package com.vaadin.tutorial.crm.backend.library.base.service.history;
 
-import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 import com.vaadin.tutorial.crm.backend.library.base.blackMagic.read.ReadProcess;
 import com.vaadin.tutorial.crm.backend.library.base.blackMagic.read.filter.Filterer;
 import com.vaadin.tutorial.crm.backend.library.base.entity.history.HistoryParentOf;
 import com.vaadin.tutorial.crm.backend.library.base.repository.HistoryParentJpaRepo;
 import com.vaadin.tutorial.crm.backend.library.base.service.BaseService;
+import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 
 import java.util.List;
 
@@ -42,8 +42,6 @@ public abstract class HistoryParentService<
 //        history.addChild(child);
 //        return this.repo.save(history);
 //    }
-
-
 
 
 //    @Override

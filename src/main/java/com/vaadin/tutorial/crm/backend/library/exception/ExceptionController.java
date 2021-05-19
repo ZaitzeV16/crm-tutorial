@@ -1,6 +1,7 @@
 package com.vaadin.tutorial.crm.backend.library.exception;
 
 //import com.vaadin.tutorial.crm.backend.library.Translator;
+
 import com.vaadin.tutorial.crm.backend.library.payload.ConflictEventDataPayload;
 import com.vaadin.tutorial.crm.backend.library.payload.DataPayload;
 import lombok.extern.log4j.Log4j;

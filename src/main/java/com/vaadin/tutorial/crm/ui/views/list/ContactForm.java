@@ -15,8 +15,9 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.shared.Registration;
-import com.vaadin.tutorial.crm.backend.entity.Company;
-import com.vaadin.tutorial.crm.backend.entity.Contact;
+import com.vaadin.tutorial.crm.backend.entity._leftover.company.model.Company;
+import com.vaadin.tutorial.crm.backend.entity._leftover.contact.model.Contact;
+import com.vaadin.tutorial.crm.backend.entity._leftover.contact.status.ContactStatus;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ContactForm extends FormLayout {
     TextField firstName = new TextField("First name");
     TextField lastName = new TextField("Last name");
     EmailField email = new EmailField("Email");
-    ComboBox<Contact.Status> status = new ComboBox<>("Status");
+    ComboBox<ContactStatus> status = new ComboBox<>("Status");
     ComboBox<Company> company = new ComboBox<>("Company");
 
     Button save = new Button("Save");
@@ -39,7 +40,7 @@ public class ContactForm extends FormLayout {
         addClassName("contact-form");
 
         binder.bindInstanceFields(this);
-        status.setItems(Contact.Status.values());
+        status.setItems(ContactStatus.values());
         company.setItems(companies);
         company.setItemLabelGenerator(Company::getName);
 

@@ -8,7 +8,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 /**
  * The entry point of the Spring Boot application.
  */
-@SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
+@SpringBootApplication(
+        exclude = ErrorMvcAutoConfiguration.class,
+        scanBasePackages = {"hu.hellp", "com.vaadin.tutorial.crm"}
+)
 public class VaadinTutorialApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

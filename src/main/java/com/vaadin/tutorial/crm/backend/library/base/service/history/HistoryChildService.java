@@ -1,6 +1,5 @@
 package com.vaadin.tutorial.crm.backend.library.base.service.history;
 
-import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 import com.vaadin.tutorial.crm.backend.library.base.blackMagic.create.CreateProcess;
 import com.vaadin.tutorial.crm.backend.library.base.blackMagic.create.CreateProcessToDTO;
 import com.vaadin.tutorial.crm.backend.library.base.blackMagic.delete.DeleteProcess;
@@ -15,6 +14,7 @@ import com.vaadin.tutorial.crm.backend.library.base.entity.history.type.HistoryE
 import com.vaadin.tutorial.crm.backend.library.base.repository.HistoryChildJpaRepo;
 import com.vaadin.tutorial.crm.backend.library.base.service.BaseService;
 import com.vaadin.tutorial.crm.backend.library.exception.ConflictException;
+import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 
 import java.util.List;
 

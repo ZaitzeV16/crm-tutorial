@@ -1,8 +1,8 @@
 package com.vaadin.tutorial.crm.backend.library.base.dto.base;
 
+import com.vaadin.tutorial.crm.backend.library.base.entity.BaseEntity;
 import hu.hellp.mdss.annotation.MdsDTO;
 import hu.hellp.mdss.annotation.MdsDefaultProperty;
-import com.vaadin.tutorial.crm.backend.library.base.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -58,7 +58,6 @@ public abstract class ProcessService<
 //    public abstract ReservationProcessParam createProcessParam(ReservationProcessType processType, Map<ReservationProcessDataType, Object> dataMap);
 
 
-
     @SuppressWarnings({"unchecked", "rawtypes"})  // TODO: 2021. 03. 30. Zi - teljesen generizálni a kört
     protected PROCESS_PARAM doFolyamat(PROCESS_PARAM pp) {
         List<? extends ProcessMemberInterface> members = pp.processType.getProcessMembers();

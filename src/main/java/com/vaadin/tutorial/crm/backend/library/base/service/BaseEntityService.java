@@ -1,6 +1,5 @@
 package com.vaadin.tutorial.crm.backend.library.base.service;
 
-import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 import com.vaadin.tutorial.crm.backend.library.base.blackMagic.create.CreateProcess;
 import com.vaadin.tutorial.crm.backend.library.base.blackMagic.create.CreateProcessToDTO;
 import com.vaadin.tutorial.crm.backend.library.base.blackMagic.delete.DeleteProcess;
@@ -12,6 +11,7 @@ import com.vaadin.tutorial.crm.backend.library.base.dto.base.CreateBaseDTO;
 import com.vaadin.tutorial.crm.backend.library.base.dto.base.UpdateBaseDTO;
 import com.vaadin.tutorial.crm.backend.library.base.entity.BaseEntity;
 import com.vaadin.tutorial.crm.backend.library.base.repository.BaseEntityJpaRepo;
+import hu.hellp.mdss.service.processor.ModelDtoSerializerService;
 
 import java.util.List;
 

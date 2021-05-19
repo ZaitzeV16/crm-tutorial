@@ -2,6 +2,7 @@ package com.vaadin.tutorial.crm.backend.library;
 
 //import com.google.gson.*;
 //import com.google.gson.reflect.TypeToken;
+
 import com.vaadin.tutorial.crm.backend.library.exception.ConflictException;
 import lombok.SneakyThrows;
 

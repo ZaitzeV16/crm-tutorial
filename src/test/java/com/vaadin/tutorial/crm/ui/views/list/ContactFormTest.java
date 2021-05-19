@@ -1,7 +1,8 @@
 package com.vaadin.tutorial.crm.ui.views.list;
 
-import com.vaadin.tutorial.crm.backend.entity.Company;
-import com.vaadin.tutorial.crm.backend.entity.Contact;
+import com.vaadin.tutorial.crm.backend.entity._leftover.company.model.Company;
+import com.vaadin.tutorial.crm.backend.entity._leftover.contact.model.Contact;
+import com.vaadin.tutorial.crm.backend.entity._leftover.contact.status.ContactStatus;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class ContactFormTest {
         marcUsher.setFirstName("Marc");
         marcUsher.setLastName("Usher");
         marcUsher.setEmail("marc@usher.com");
-        marcUsher.setStatus(Contact.Status.NotContacted);
+        marcUsher.setStatus(ContactStatus.NotContacted);
         marcUsher.setCompany(company2);
     }
 
@@ -40,7 +41,7 @@ public class ContactFormTest {
         Assert.assertEquals("Usher", form.lastName.getValue());
         Assert.assertEquals("marc@usher.com", form.email.getValue());
         Assert.assertEquals(company2, form.company.getValue());
-        Assert.assertEquals(Contact.Status.NotContacted, form.status.getValue());
+        Assert.assertEquals(ContactStatus.NotContacted, form.status.getValue());
     }
 
     @Test
@@ -53,12 +54,10 @@ public class ContactFormTest {
         form.lastName.setValue("Doe");
         form.company.setValue(company1);
         form.email.setValue("john@doe.com");
-        form.status.setValue(Contact.Status.Customer);
+        form.status.setValue(ContactStatus.Customer);
 
         AtomicReference<Contact> savedContactRef = new AtomicReference<>(null);
-        form.addListener(ContactForm.SaveEvent.class, e -> {
-            savedContactRef.set(e.getContact());
-        });
+        form.addListener(ContactForm.SaveEvent.class, e -> savedContactRef.set(e.getContact()));
         form.save.click();
         Contact savedContact = savedContactRef.get();
 
@@ -66,7 +65,7 @@ public class ContactFormTest {
         Assert.assertEquals("Doe", savedContact.getLastName());
         Assert.assertEquals("john@doe.com", savedContact.getEmail());
         Assert.assertEquals(company1, savedContact.getCompany());
-        Assert.assertEquals(Contact.Status.Customer, savedContact.getStatus());
+        Assert.assertEquals(ContactStatus.Customer, savedContact.getStatus());
     }
 
 }

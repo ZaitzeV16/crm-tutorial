@@ -1,7 +1,7 @@
 package com.vaadin.tutorial.crm.backend.library.base.dto.history;
 
-import hu.hellp.mdss.annotation.MdsDTO;
 import com.vaadin.tutorial.crm.backend.library.base.entity.history.HistoryChildOf;
+import hu.hellp.mdss.annotation.MdsDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
