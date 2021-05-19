@@ -9,10 +9,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * The entry point of the Spring Boot application.
  */
 @SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
-public class Application extends SpringBootServletInitializer {
+public class VaadinTutorialApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(VaadinTutorialApplication.class, args);
     }
 
 }
