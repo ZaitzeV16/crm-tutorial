@@ -15,13 +15,13 @@ import com.vaadin.tutorial.crm.ui.views.dashboard.DashboardView;
 import com.vaadin.tutorial.crm.ui.views.list.ListView;
 
 @PWA(
-    name = "Vaadin CRM",
-    shortName = "CRM",
-    offlineResources = {
-        "./styles/offline.css",
-        "./images/offline.png"
-    },
-    enableInstallPrompt = false
+        name = "Vaadin CRM",
+        shortName = "CRM",
+        offlineResources = {
+                "./styles/offline.css",
+                "./images/offline.png"
+        },
+        enableInstallPrompt = false
 )
 @CssImport("./styles/shared-styles.css")
 public class MainLayout extends AppLayout {
@@ -51,8 +51,8 @@ public class MainLayout extends AppLayout {
         listLink.setHighlightCondition(HighlightConditions.sameLocation());
 
         addToDrawer(new VerticalLayout(
-            listLink,
-            new RouterLink("Dashboard", DashboardView.class)
+                listLink,
+                new RouterLink("Dashboard", DashboardView.class)
         ));
     }
 

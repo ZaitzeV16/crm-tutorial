@@ -44,29 +44,29 @@ public class ContactFormTest {
     }
 
     @Test
-        public void saveEventHasCorrectValues() {
-            ContactForm form = new ContactForm(companies);
-            Contact contact = new Contact();
-            form.setContact(contact);
+    public void saveEventHasCorrectValues() {
+        ContactForm form = new ContactForm(companies);
+        Contact contact = new Contact();
+        form.setContact(contact);
 
-            form.firstName.setValue("John");
-            form.lastName.setValue("Doe");
-            form.company.setValue(company1);
-            form.email.setValue("john@doe.com");
-            form.status.setValue(Contact.Status.Customer);
+        form.firstName.setValue("John");
+        form.lastName.setValue("Doe");
+        form.company.setValue(company1);
+        form.email.setValue("john@doe.com");
+        form.status.setValue(Contact.Status.Customer);
 
-            AtomicReference<Contact> savedContactRef = new AtomicReference<>(null);
-            form.addListener(ContactForm.SaveEvent.class, e -> {
-                savedContactRef.set(e.getContact());
-            });
-            form.save.click();
-            Contact savedContact = savedContactRef.get();
+        AtomicReference<Contact> savedContactRef = new AtomicReference<>(null);
+        form.addListener(ContactForm.SaveEvent.class, e -> {
+            savedContactRef.set(e.getContact());
+        });
+        form.save.click();
+        Contact savedContact = savedContactRef.get();
 
-            Assert.assertEquals("John", savedContact.getFirstName());
-            Assert.assertEquals("Doe", savedContact.getLastName());
-            Assert.assertEquals("john@doe.com", savedContact.getEmail());
-            Assert.assertEquals(company1, savedContact.getCompany());
-            Assert.assertEquals(Contact.Status.Customer, savedContact.getStatus());
-        }
+        Assert.assertEquals("John", savedContact.getFirstName());
+        Assert.assertEquals("Doe", savedContact.getLastName());
+        Assert.assertEquals("john@doe.com", savedContact.getEmail());
+        Assert.assertEquals(company1, savedContact.getCompany());
+        Assert.assertEquals(Contact.Status.Customer, savedContact.getStatus());
+    }
 
 }

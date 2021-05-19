@@ -44,12 +44,12 @@ public class ContactForm extends FormLayout {
         company.setItemLabelGenerator(Company::getName);
 
         add(
-            firstName,
-            lastName,
-            email,
-            status,
-            company,
-            createButtonsLayout()
+                firstName,
+                lastName,
+                email,
+                status,
+                company,
+                createButtonsLayout()
         );
     }
 
@@ -77,49 +77,49 @@ public class ContactForm extends FormLayout {
 
     private void validateAndSave() {
 
-      try {
-        binder.writeBean(contact);
-        fireEvent(new SaveEvent(this, contact));
-      } catch (ValidationException e) {
-        e.printStackTrace();
-      }
+        try {
+            binder.writeBean(contact);
+            fireEvent(new SaveEvent(this, contact));
+        } catch (ValidationException e) {
+            e.printStackTrace();
+        }
     }
 
     // Events
     public static abstract class ContactFormEvent extends ComponentEvent<ContactForm> {
-      private Contact contact;
+        private Contact contact;
 
-      protected ContactFormEvent(ContactForm source, Contact contact) {
-        super(source, false);
-        this.contact = contact;
-      }
+        protected ContactFormEvent(ContactForm source, Contact contact) {
+            super(source, false);
+            this.contact = contact;
+        }
 
-      public Contact getContact() {
-        return contact;
-      }
+        public Contact getContact() {
+            return contact;
+        }
     }
 
     public static class SaveEvent extends ContactFormEvent {
-      SaveEvent(ContactForm source, Contact contact) {
-        super(source, contact);
-      }
+        SaveEvent(ContactForm source, Contact contact) {
+            super(source, contact);
+        }
     }
 
     public static class DeleteEvent extends ContactFormEvent {
-      DeleteEvent(ContactForm source, Contact contact) {
-        super(source, contact);
-      }
+        DeleteEvent(ContactForm source, Contact contact) {
+            super(source, contact);
+        }
 
     }
 
     public static class CloseEvent extends ContactFormEvent {
-      CloseEvent(ContactForm source) {
-        super(source, null);
-      }
+        CloseEvent(ContactForm source) {
+            super(source, null);
+        }
     }
 
     public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,
                                                                   ComponentEventListener<T> listener) {
-      return getEventBus().addListener(eventType, listener);
+        return getEventBus().addListener(eventType, listener);
     }
 }

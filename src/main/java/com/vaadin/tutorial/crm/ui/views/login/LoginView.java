@@ -24,18 +24,18 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         login.setAction("login");
 
         add(
-            new H1("Vaadin CRM"),
-            login
+                new H1("Vaadin CRM"),
+                login
         );
     }
 
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        if(beforeEnterEvent.getLocation()
-        .getQueryParameters()
-        .getParameters()
-        .containsKey("error")) {
+        if (beforeEnterEvent.getLocation()
+                .getQueryParameters()
+                .getParameters()
+                .containsKey("error")) {
             login.setError(true);
         }
     }

@@ -31,8 +31,8 @@ public class DashboardView extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         add(
-            getContactStats(),
-            getCompaniesChart()
+                getContactStats(),
+                getCompaniesChart()
         );
     }
 
@@ -49,7 +49,7 @@ public class DashboardView extends VerticalLayout {
         DataSeries dataSeries = new DataSeries();
         Map<String, Integer> stats = companyService.getStats();
         stats.forEach((name, number) ->
-            dataSeries.add(new DataSeriesItem(name, number)));
+                dataSeries.add(new DataSeriesItem(name, number)));
 
         chart.getConfiguration().setSeries(dataSeries);
         return chart;
