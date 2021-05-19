@@ -1,18 +1,12 @@
 package com.vaadin.tutorial.crm.ui.views.calendar;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.tutorial.crm.backend.entity._leftover.company.CompanyService;
-import com.vaadin.tutorial.crm.backend.entity._leftover.company.model.Company;
 import com.vaadin.tutorial.crm.backend.entity._leftover.contact.ContactService;
 import com.vaadin.tutorial.crm.backend.entity._leftover.contact.model.Contact;
+import com.vaadin.tutorial.crm.backend.entity.user.UserService;
 import com.vaadin.tutorial.crm.ui.MainLayout;
 import com.vaadin.tutorial.crm.ui.views.list.ContactForm;
 import org.springframework.context.annotation.Scope;
@@ -25,6 +19,8 @@ import org.vaadin.stefan.fullcalendar.FullCalendar;
 @PageTitle("Calendar | Vaadin CRM")
 public class CalendarView extends FullCalendar {
 
+    private final UserService userService;
+
     ContactForm form;
     Grid<Contact> grid = new Grid<>(Contact.class);
     TextField filterText = new TextField();
@@ -33,9 +29,12 @@ public class CalendarView extends FullCalendar {
 
 //    public CalendarView(ContactService contactService,
 //                        CompanyService companyService) {
-    public CalendarView() {
+    public CalendarView(UserService userService) {
+        this.userService = userService;
 //        this.contactService = contactService;
         this.addClassName("calendar-view");
+
+        Object asd = this.userService.findLoggedInUser();
 //        this.setSizeFull();
 //        this.configureGrid();
 
