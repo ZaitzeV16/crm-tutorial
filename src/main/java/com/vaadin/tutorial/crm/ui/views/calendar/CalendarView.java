@@ -17,12 +17,13 @@ import com.vaadin.tutorial.crm.ui.MainLayout;
 import com.vaadin.tutorial.crm.ui.views.list.ContactForm;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.vaadin.stefan.fullcalendar.FullCalendar;
 
 @Component
 @Scope("prototype")
 @Route(value = "calendar", layout = MainLayout.class)
 @PageTitle("Calendar | Vaadin CRM")
-public class CalendarView extends VerticalLayout {
+public class CalendarView extends FullCalendar {
 
     ContactForm form;
     Grid<Contact> grid = new Grid<>(Contact.class);

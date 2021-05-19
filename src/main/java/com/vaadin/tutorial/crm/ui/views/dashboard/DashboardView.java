@@ -23,7 +23,7 @@ public class DashboardView extends VerticalLayout {
         addClassName("dashboard-view");
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-        add(
+        this.add(
                 getContactStats()
 //                getCompaniesChart()
         );
