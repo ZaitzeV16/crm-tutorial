@@ -12,6 +12,8 @@ import java.lang.annotation.*;
 @Inherited
 public @interface SeedService {
 
+    Class<? extends BaseSeedService<?, ?>>[] dependsOn() default {};
+
     @AliasFor(annotation = Service.class)
     String value() default "";
 

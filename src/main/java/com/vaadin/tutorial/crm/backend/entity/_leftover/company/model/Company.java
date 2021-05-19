@@ -8,10 +8,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public class Company extends BaseEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company", fetch = EAGER)
     private List<Contact> employees = new ArrayList<>();
 
     public Company(String name) {

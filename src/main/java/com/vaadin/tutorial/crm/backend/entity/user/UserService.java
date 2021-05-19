@@ -21,7 +21,7 @@ public class UserService extends BaseEntityService<User, Long, UserRepo> {
         return this.findByUsername(currentPrincipalName);
     }
 
-    private User findByUsername(String username) {
+    public User findByUsername(String username) {
         return this.repo.findByUsername(username);
     }
 
