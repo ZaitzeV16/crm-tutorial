@@ -10,10 +10,10 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.Lumo;
-import software.xdev.vaadin.daterange_picker.business.DateRangeModel;
-import software.xdev.vaadin.daterange_picker.business.SimpleDateRange;
-import software.xdev.vaadin.daterange_picker.business.SimpleDateRanges;
-import software.xdev.vaadin.daterange_picker.ui.DateRangePicker;
+import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRangeModel;
+import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.SimpleDateRange;
+import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.SimpleDateRanges;
+import com.vaadin.tutorial.crm.backend.temp.daterange_picker.ui.DateRangePicker;
 
 import java.time.LocalDate;
 import java.util.Arrays;

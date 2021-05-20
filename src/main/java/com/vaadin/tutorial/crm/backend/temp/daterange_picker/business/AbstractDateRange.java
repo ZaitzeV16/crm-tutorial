@@ -12,6 +12,7 @@ import java.util.function.Function;
  * @param <SELF> implementer
  * @author AB
  */
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> implements DateRange {
     private String key;
     private Optional<Period> optMovePeriod = Optional.empty();
@@ -19,7 +20,7 @@ public abstract class AbstractDateRange<SELF extends AbstractDateRange<SELF>> im
     private Function<LocalDate, Optional<DateRangeResult>> calcForFunc;
     private BiFunction<LocalDate, Integer, Optional<DateRangeResult>> moveFunc = (date, count) ->
     {
-        if (!this.optMovePeriod.isPresent()) {
+        if (this.optMovePeriod.isEmpty()) {
             return Optional.empty();
         }
 

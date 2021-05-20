@@ -87,7 +87,7 @@ public final class SimpleDateRanges {
             .withDefaultDesc("Free")
             .withMovable(false)
             .withCalcable(false);
-    // @formatter:on
+
 
     public static SimpleDateRange[] allValues() {
         return new SimpleDateRange[]{

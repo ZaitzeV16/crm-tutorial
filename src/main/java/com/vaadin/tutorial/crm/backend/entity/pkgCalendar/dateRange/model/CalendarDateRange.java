@@ -1,6 +1,7 @@
 package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.model;
 
-import software.xdev.vaadin.daterange_picker.business.AbstractDateRange;
+
+import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.AbstractDateRange;
 
 public class CalendarDateRange extends AbstractDateRange<CalendarDateRange> {
 
