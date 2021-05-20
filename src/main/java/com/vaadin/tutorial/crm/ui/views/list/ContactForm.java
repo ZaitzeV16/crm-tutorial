@@ -44,6 +44,7 @@ public class ContactForm extends FormLayout {
         company.setItems(companies);
         company.setItemLabelGenerator(Company::getName);
 
+        this.firstName.focus();
         add(
                 firstName,
                 lastName,

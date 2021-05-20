@@ -15,17 +15,17 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     LoginForm login = new LoginForm();
 
     public LoginView() {
-        addClassName("login-view");
-        setSizeFull();
+        this.addClassName("login-view");
+        this.setSizeFull();
 
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setAlignItems(Alignment.CENTER);
+        this.setJustifyContentMode(JustifyContentMode.CENTER);
+        this.setAlignItems(Alignment.CENTER);
 
-        login.setAction("login");
+        this.login.setAction("login");
 
-        add(
+        this.add(
                 new H1("Vaadin CRM"),
-                login
+                this.login
         );
     }
 
@@ -36,7 +36,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
                 .getQueryParameters()
                 .getParameters()
                 .containsKey("error")) {
-            login.setError(true);
+            this.login.setError(true);
         }
     }
+
 }

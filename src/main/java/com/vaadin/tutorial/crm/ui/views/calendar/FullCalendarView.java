@@ -21,7 +21,7 @@ import org.vaadin.stefan.fullcalendar.FullCalendar;
 @Scope("prototype")
 @Route(value = "calendar", layout = MainLayout.class)
 @PageTitle("Calendar | Vaadin CRM")
-public class CalendarView extends FullCalendar {
+public class FullCalendarView extends FullCalendar {
 
     private final UserService userService;
 
@@ -33,7 +33,7 @@ public class CalendarView extends FullCalendar {
 
 //    public CalendarView(ContactService contactService,
 //                        CompanyService companyService) {
-    public CalendarView(UserService userService) {
+    public FullCalendarView(UserService userService) {
         this.userService = userService;
 //        this.contactService = contactService;
         this.addClassName("calendar-view");

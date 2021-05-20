@@ -11,9 +11,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
-import com.vaadin.tutorial.crm.ui.views.calendar.CalendarView;
+import com.vaadin.tutorial.crm.ui.views.calendar.FullCalendarView;
 import com.vaadin.tutorial.crm.ui.views.dashboard.DashboardView;
 import com.vaadin.tutorial.crm.ui.views.list.ListView;
+import com.vaadin.tutorial.crm.ui.views.temporary.dateRangePickerExample.DateRangePickerExampleView;
 
 @PWA(
         name = "Vaadin CRM",
@@ -50,14 +51,16 @@ public class MainLayout extends AppLayout {
     private void createDrawer() {
         RouterLink listLink = new RouterLink("List", ListView.class);
         RouterLink dashboard = new RouterLink("Dashboard", DashboardView.class);
-        RouterLink calendarLink = new RouterLink("Calendar", CalendarView.class);
+        RouterLink calendarLink = new RouterLink("Calendar", FullCalendarView.class);
+        RouterLink dateRangePickerLink = new RouterLink("DateRangePickerDemo", DateRangePickerExampleView.class);
 
         listLink.setHighlightCondition(HighlightConditions.sameLocation());
 
         VerticalLayout verticalLayout = new VerticalLayout(
                 listLink,
                 dashboard,
-                calendarLink
+                calendarLink,
+                dateRangePickerLink
         );
 
         this.addToDrawer(verticalLayout);
