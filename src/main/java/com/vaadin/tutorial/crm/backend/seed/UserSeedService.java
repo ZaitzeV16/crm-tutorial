@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.backend.seed;
 
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.calendar.model.Calendar;
 import com.vaadin.tutorial.crm.backend.entity.user.UserService;
 import com.vaadin.tutorial.crm.backend.entity.user.model.User;
 import com.vaadin.tutorial.crm.backend.library.base.seed.BaseSeedService;
@@ -21,7 +22,12 @@ public class UserSeedService extends BaseSeedService<User, UserService> {
 
     @Override
     public List<User> generateSeedData() {
-        return List.of(new User("user", this.calendarSeedService.findAll().stream().findAny().orElse(null)));
+        User user = this.entityService.save(new User("user", null));
+
+        Calendar calendar = this.calendarSeedService.findAll().stream().findAny().orElse(null);
+        user.setCalendar(calendar);
+
+        return List.of(user);
     }
 
 }

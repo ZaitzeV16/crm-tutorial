@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SeedService(dependsOn = CalendarSeedService.class)
-public class CalendarEntrySeedService extends BaseSeedService<MainCalendarEntry, MainCalendarEntryService> {
+public class MainCalendarEntrySeedService extends BaseSeedService<MainCalendarEntry, MainCalendarEntryService> {
 
     private final CalendarSeedService calendarSeedService;
 
     @Autowired
-    public CalendarEntrySeedService(MainCalendarEntryService mainCalendarEntryService, CalendarSeedService calendarSeedService) {
+    public MainCalendarEntrySeedService(MainCalendarEntryService mainCalendarEntryService, CalendarSeedService calendarSeedService) {
         super(mainCalendarEntryService);
         this.calendarSeedService = calendarSeedService;
     }
@@ -34,7 +34,7 @@ public class CalendarEntrySeedService extends BaseSeedService<MainCalendarEntry,
         LocalDateTime now = LocalDateTime.now();
 
         for (int i = 0; i < 10; i++) {
-            entries.add(new MainCalendarEntry(now.plusDays(i), now.plusDays(i + 1), calendar));
+            entries.add(new MainCalendarEntry("title" + i, "desctiption" + i, now.plusDays(i), now.plusDays(i + 1), calendar));
         }
 
         return entries;

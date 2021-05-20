@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -37,12 +38,9 @@ public class MainCalendarEntry extends CalendarEntry {
 //            inverseJoinColumns = @JoinColumn(name = "reminder_id"))
 //    private List<Reminder> reminders = new ArrayList<>();
 
-    public MainCalendarEntry(@NotNull LocalDateTime start, @NotNull LocalDateTime end) {
-        super(start, end);
-    }
 
-    public MainCalendarEntry(@NotNull LocalDateTime start, @NotNull LocalDateTime end, Calendar calendar) {
-        super(start, end, calendar);
+    public MainCalendarEntry(@NotNull @NotBlank String title, @NotNull @NotBlank String description, @NotNull LocalDateTime start, @NotNull LocalDateTime end, @NotNull Calendar calendar) {
+        super(title, description, start, end, calendar);
     }
 
     //    public boolean isBase() {

@@ -63,5 +63,4 @@ public class MainLayout extends AppLayout {
         this.addToDrawer(verticalLayout);
     }
 
-
 }

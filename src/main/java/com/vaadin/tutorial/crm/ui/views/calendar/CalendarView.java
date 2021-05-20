@@ -6,11 +6,15 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.tutorial.crm.backend.entity._leftover.contact.ContactService;
 import com.vaadin.tutorial.crm.backend.entity._leftover.contact.model.Contact;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.calendar.model.Calendar;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.pkgCalendarEntry.mainCalendarEntry.model.MainCalendarEntry;
 import com.vaadin.tutorial.crm.backend.entity.user.UserService;
+import com.vaadin.tutorial.crm.backend.entity.user.model.User;
 import com.vaadin.tutorial.crm.ui.MainLayout;
 import com.vaadin.tutorial.crm.ui.views.list.ContactForm;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.vaadin.stefan.fullcalendar.Entry;
 import org.vaadin.stefan.fullcalendar.FullCalendar;
 
 @Component
@@ -34,7 +38,17 @@ public class CalendarView extends FullCalendar {
 //        this.contactService = contactService;
         this.addClassName("calendar-view");
 
-        Object asd = this.userService.findLoggedInUser();
+        User user = this.userService.findLoggedInUser();
+        Calendar calendar = user.getCalendar();
+
+        Entry entry;
+        for (MainCalendarEntry mainCalendarEntry : calendar.getEntries()) {
+            entry = new Entry();
+            entry.setStart(mainCalendarEntry.getStart());
+            entry.setEnd(mainCalendarEntry.getEnd());
+            entry.setTitle(mainCalendarEntry.getTitle());
+            this.addEntry(entry);
+        }
 //        this.setSizeFull();
 //        this.configureGrid();
 
