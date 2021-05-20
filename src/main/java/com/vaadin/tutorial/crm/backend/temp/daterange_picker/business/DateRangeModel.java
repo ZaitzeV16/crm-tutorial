@@ -7,10 +7,9 @@ import java.time.LocalDate;
 
 /**
  * Model for {@link DateRangePicker}
- *
- * @author AB
  */
 public class DateRangeModel<D extends DateRange> implements DateRangeActions<D, DateRangeModel<D>> {
+
     private LocalDate start;
     private LocalDate end;
     private D dateRange;
@@ -70,12 +69,15 @@ public class DateRangeModel<D extends DateRange> implements DateRangeActions<D, 
         if (this == obj) {
             return true;
         }
+
         if (obj == null) {
             return false;
         }
+
         if (this.getClass() != obj.getClass()) {
             return false;
         }
+
         final DateRangeModel<?> other = (DateRangeModel<?>) obj;
         if (this.dateRange == null) {
             if (other.dateRange != null) {
@@ -84,6 +86,7 @@ public class DateRangeModel<D extends DateRange> implements DateRangeActions<D, 
         } else if (!this.dateRange.equals(other.dateRange)) {
             return false;
         }
+
         if (this.end == null) {
             if (other.end != null) {
                 return false;
@@ -91,15 +94,12 @@ public class DateRangeModel<D extends DateRange> implements DateRangeActions<D, 
         } else if (!this.end.equals(other.end)) {
             return false;
         }
-        if (this.start == null) {
-            if (other.start != null) {
-                return false;
-            }
-        } else if (!this.start.equals(other.start)) {
-            return false;
-        }
-        return true;
-    }
 
+        if (this.start == null) {
+            return other.start == null;
+        } else {
+            return this.start.equals(other.start);
+        }
+    }
 
 }

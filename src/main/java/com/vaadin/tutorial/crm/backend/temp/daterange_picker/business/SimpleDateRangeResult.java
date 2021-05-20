@@ -1,13 +1,15 @@
 package com.vaadin.tutorial.crm.backend.temp.daterange_picker.business;
 
+import lombok.Getter;
+
 import java.time.LocalDate;
 
 /**
  * Simple implementation of {@link DateRangeResult}
- *
- * @author AB
  */
+@Getter
 public class SimpleDateRangeResult implements DateRangeResult {
+
     private final LocalDate start;
     private final LocalDate end;
 
@@ -17,13 +19,4 @@ public class SimpleDateRangeResult implements DateRangeResult {
         this.end = end;
     }
 
-    @Override
-    public LocalDate getStart() {
-        return this.start;
-    }
-
-    @Override
-    public LocalDate getEnd() {
-        return this.end;
-    }
 }

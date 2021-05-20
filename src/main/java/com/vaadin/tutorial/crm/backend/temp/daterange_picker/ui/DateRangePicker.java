@@ -22,11 +22,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 
-/**
- * Represents a Date-Range-Picker
- *
- * @author AB
- */
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 @CssImport(DateRangePickerStyles.LOCATION)
 public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayout> implements
         FlexComponent<VerticalLayout>,
@@ -49,7 +45,6 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
     /*
      * Config
      */
-
     protected Optional<Locale> formatLocale = Optional.empty();
     protected ItemLabelGenerator<D> dateRangeLocalizerFunction = DateRange::getDefaultDescription;
     protected Optional<DatePickerI18n> datePickerI18n = Optional.empty();
@@ -117,7 +112,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
     }
 
     public Locale getFormatLocale() {
-        return this.formatLocale.isPresent() ? this.formatLocale.get() : DEFAULT_LOCALE;
+        return this.formatLocale.orElse(DEFAULT_LOCALE);
     }
 
     public DateRangePicker<D> withDateRangeLocalizerFunction(final ItemLabelGenerator<D> dateRangeLocalizerFunction) {
@@ -197,6 +192,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
             this.toggle();
             ev.getSource().setEnabled(true);
         });
+
         this.overlay.addValueChangeListener(ev ->
         {
             this.model = ev.getSource().getModel();
@@ -254,7 +250,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
     }
 
     @ClientCallable
-    protected void clickOutsideOccured() {
+    protected void clickOutsideOccurred() {
         if (!this.isCloseOnOutsideClick()) {
             return;
         }
@@ -276,7 +272,7 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
         this.btnOverview.setText(
                 this.model.getStart().format(formatter) +
                         (
-                                this.model.getStart().equals(this.model.getEnd()) ?
+                                (this.model.getStart().equals(this.model.getEnd())) ?
                                         "" :
                                         " - " + this.model.getEnd().format(formatter)
                         )
@@ -289,14 +285,12 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
     }
 
     protected void tryFixInvalidModel() {
-        // @formatter:off
         this.model.getDateRange()
                 .calcFor(this.model.getStart())
                 .ifPresent(result -> {
                     this.model.setStart(result.getStart());
                     this.model.setEnd(result.getEnd());
                 });
-        // @formatter:on
     }
 
     protected void toggle() {

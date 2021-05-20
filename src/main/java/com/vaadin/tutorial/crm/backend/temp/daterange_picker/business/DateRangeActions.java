@@ -8,7 +8,6 @@ import java.time.LocalDate;
  *
  * @param <D> DateRange
  * @param <T> Implementer; returned as "Builder"
- * @author AB
  */
 public interface DateRangeActions<D extends DateRange, T> {
     LocalDate getStart();

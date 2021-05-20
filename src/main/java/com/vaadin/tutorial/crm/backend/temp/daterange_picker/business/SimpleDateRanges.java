@@ -7,8 +7,6 @@ import java.time.temporal.TemporalAdjusters;
 
 /**
  * Contains predefined {@link SimpleDateRange SimpleDateRanges}
- *
- * @author AB
  */
 public final class SimpleDateRanges {
     private SimpleDateRanges() {

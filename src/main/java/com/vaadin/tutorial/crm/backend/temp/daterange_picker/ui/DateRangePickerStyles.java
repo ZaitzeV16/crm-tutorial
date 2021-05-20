@@ -2,8 +2,6 @@ package com.vaadin.tutorial.crm.backend.temp.daterange_picker.ui;
 
 /**
  * Styles for the {@link DateRangePicker}
- *
- * @author AB
  */
 public interface DateRangePickerStyles {
     String LOCATION = "./styles/dateRangePicker.css";
