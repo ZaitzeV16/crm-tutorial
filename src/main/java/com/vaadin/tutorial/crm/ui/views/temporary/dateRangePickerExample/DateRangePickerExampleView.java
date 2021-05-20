@@ -10,8 +10,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.example.DateRangePickerStyledDemo;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.DateRangePickerStyledDemo;
 import com.vaadin.tutorial.crm.ui.MainLayout;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 
@@ -49,28 +51,12 @@ public class DateRangePickerExampleView extends Composite<VerticalLayout> {
     }
 
 
+    @Getter
+    @AllArgsConstructor
     static class Example {
         private final String route;
         private final String name;
         private final String desc;
-
-        public Example(final String route, final String name, final String desc) {
-            super();
-            this.route = route;
-            this.name = name;
-            this.desc = desc;
-        }
-
-        public String getRoute() {
-            return this.route;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getDesc() {
-            return this.desc;
-        }
     }
+
 }

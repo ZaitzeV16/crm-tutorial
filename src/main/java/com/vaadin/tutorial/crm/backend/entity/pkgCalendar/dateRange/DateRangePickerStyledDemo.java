@@ -1,4 +1,4 @@
-package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.example;
+package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange;
 
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;

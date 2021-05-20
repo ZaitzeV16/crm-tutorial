@@ -8,7 +8,7 @@ public class CalendarDateRange extends AbstractDateRange<CalendarDateRange> {
     private String tag;
 
     public CalendarDateRange withTag(final String tag) {
-        this.tag = tag != null ? tag : "";
+        this.tag = (tag != null) ? tag : "";
         return this;
     }
 
