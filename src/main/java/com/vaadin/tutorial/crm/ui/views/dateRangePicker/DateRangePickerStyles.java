@@ -1,4 +1,4 @@
-package com.vaadin.tutorial.crm.backend.temp.daterange_picker.ui;
+package com.vaadin.tutorial.crm.ui.views.dateRangePicker;
 
 /**
  * Styles for the {@link DateRangePicker}

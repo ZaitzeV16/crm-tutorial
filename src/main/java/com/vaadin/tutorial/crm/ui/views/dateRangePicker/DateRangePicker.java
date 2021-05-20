@@ -1,4 +1,4 @@
-package com.vaadin.tutorial.crm.backend.temp.daterange_picker.ui;
+package com.vaadin.tutorial.crm.ui.views.dateRangePicker;
 
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
@@ -11,9 +11,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.binder.HasItems;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.shared.Registration;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRange;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRangeActions;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRangeModel;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRange;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeActions;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeModel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

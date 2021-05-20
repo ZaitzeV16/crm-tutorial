@@ -1,4 +1,4 @@
-package com.vaadin.tutorial.crm.backend.temp.daterange_picker.business;
+package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source;
 
 
 import java.time.LocalDate;
@@ -10,6 +10,7 @@ import java.time.LocalDate;
  * @param <T> Implementer; returned as "Builder"
  */
 public interface DateRangeActions<D extends DateRange, T> {
+
     LocalDate getStart();
 
     T setStart(final LocalDate start);
@@ -21,4 +22,5 @@ public interface DateRangeActions<D extends DateRange, T> {
     D getDateRange();
 
     T setDateRange(final D dateRange);
+
 }

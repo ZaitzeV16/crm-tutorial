@@ -96,7 +96,7 @@ public class MainSeedService {
         if (secondDependsOnFirst) {
             return -1;
         }
-        
+
         return 0;
     }
 

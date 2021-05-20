@@ -10,10 +10,10 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.Lumo;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRangeModel;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.SimpleDateRange;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.SimpleDateRanges;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.ui.DateRangePicker;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeModel;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.SimpleDateRange;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.SimpleDateRanges;
+import com.vaadin.tutorial.crm.ui.views.dateRangePicker.DateRangePicker;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -22,14 +22,15 @@ import java.util.List;
 
 @Route(DateRangePickerStyledDemo.NAV)
 public class DateRangePickerStyledDemo extends Composite<VerticalLayout> {
+
     public static final String NAV = "styled";
 
-    protected static final List<SimpleDateRange> DATERANGE_VALUES = Arrays.asList(SimpleDateRanges.allValues());
+    protected static final List<SimpleDateRange> DATE_RANGE_VALUES = Arrays.asList(SimpleDateRanges.allValues());
 
     private final DateRangePicker<SimpleDateRange> dateRangePicker =
             new DateRangePicker<>(
                     () -> new DateRangeModel<>(LocalDate.now(), LocalDate.now(), SimpleDateRanges.TODAY),
-                    DATERANGE_VALUES);
+                    DATE_RANGE_VALUES);
 
     private final TextArea taResult =
             new TextArea("ValueChangeEvent", "Change something in the datepicker to see the result");
@@ -95,4 +96,5 @@ public class DateRangePickerStyledDemo extends Composite<VerticalLayout> {
         this.btnDarkMode.setText(!isDarkMode ? "Enter the darkness" : "Turn the light on");
         this.btnDarkMode.setIcon(!isDarkMode ? VaadinIcon.MOON_O.create() : VaadinIcon.SUN_O.create());
     }
+
 }

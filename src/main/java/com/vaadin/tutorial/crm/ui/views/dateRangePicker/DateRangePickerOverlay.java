@@ -1,4 +1,4 @@
-package com.vaadin.tutorial.crm.backend.temp.daterange_picker.ui;
+package com.vaadin.tutorial.crm.ui.views.dateRangePicker;
 
 import com.vaadin.flow.component.AbstractField.ComponentValueChangeEvent;
 import com.vaadin.flow.component.*;
@@ -12,9 +12,9 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.binder.HasItems;
 import com.vaadin.flow.shared.Registration;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRange;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRangeModel;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRangeResult;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRange;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeModel;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeResult;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -138,6 +138,7 @@ public class DateRangePickerOverlay<D extends DateRange> extends Composite<Verti
         this.onValueChange(model -> model.getDateRange().moveDateRange(model.getStart(), dif));
     }
 
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     protected void calcModel(final Optional<DateRangeResult> optResult, final DateRangeModel<D> model) {
         if (optResult.isEmpty()) {
             return;

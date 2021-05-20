@@ -1,7 +1,7 @@
 package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.example.customized;
 
 
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.SimpleDateRanges;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.SimpleDateRanges;
 
 public class CustomDateRanges {
     private CustomDateRanges() {

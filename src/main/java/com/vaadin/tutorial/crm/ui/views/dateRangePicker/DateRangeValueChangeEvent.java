@@ -1,9 +1,9 @@
-package com.vaadin.tutorial.crm.backend.temp.daterange_picker.ui;
+package com.vaadin.tutorial.crm.ui.views.dateRangePicker;
 
 
 import com.vaadin.flow.component.AbstractField.ComponentValueChangeEvent;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRange;
-import com.vaadin.tutorial.crm.backend.temp.daterange_picker.business.DateRangeModel;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRange;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeModel;
 
 public class DateRangeValueChangeEvent<D extends DateRange> extends ComponentValueChangeEvent<DateRangePicker<D>, DateRangeModel<D>> {
 
