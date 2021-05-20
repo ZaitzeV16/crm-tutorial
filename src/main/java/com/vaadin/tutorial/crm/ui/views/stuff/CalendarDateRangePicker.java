@@ -6,8 +6,8 @@ import com.vaadin.tutorial.crm.ui.views.dateRangePicker.DateRangePicker;
 
 public class CalendarDateRangePicker extends DateRangePicker<CalendarDateRange> {
 
-    public CalendarDateRangePicker(DateRangeModel<CalendarDateRange> defaultModel) {
-        super(defaultModel);
+    public CalendarDateRangePicker(DateRangeModel<CalendarDateRange> initialModel) {
+        super(initialModel);
     }
 
 }

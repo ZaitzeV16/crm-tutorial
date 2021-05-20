@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui.views.dateRangePicker;
 
+import com.helger.commons.io.resource.ClassPathResource;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker.DatePickerI18n;
@@ -14,7 +15,9 @@ import com.vaadin.flow.shared.Registration;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRange;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeActions;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeModel;
+import lombok.SneakyThrows;
 
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -35,6 +38,8 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
     protected static synchronized int getNextID() {
         return ++nextID;
     }
+
+    ClassPathResource classPathResource = new ClassPathResource("META-INF/resources/js/outsideListenerDateRangePicker.txt");
 
     /*
      * Fields
@@ -58,32 +63,32 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
     protected final Div overlayContainer = new Div();
     protected final DateRangePickerOverlay<D> overlay = new DateRangePickerOverlay<>(this);
 
-    public DateRangePicker(final DateRangeModel<D> defaultModel) {
-        this(defaultModel, new ArrayList<>());
+    public DateRangePicker(final DateRangeModel<D> initialModel) {
+        this(initialModel, new ArrayList<>());
     }
 
-    public DateRangePicker(final DateRangeModel<D> defaultModel, final D[] items) {
-        this(defaultModel, new ArrayList<>(Arrays.asList(items)));
+    public DateRangePicker(final DateRangeModel<D> initialModel, final D[] items) {
+        this(initialModel, new ArrayList<>(Arrays.asList(items)));
     }
 
-    public DateRangePicker(final DateRangeModel<D> defaultModel, final Collection<D> items) {
-        this.model = Objects.requireNonNull(defaultModel);
+    public DateRangePicker(final DateRangeModel<D> initialModel, final Collection<D> items) {
+        this.model = Objects.requireNonNull(initialModel);
         this.overlay.setItems(items);
 
         this.initUI();
         this.registerListeners();
     }
 
-    public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModelSupplier) {
-        this(defaultModelSupplier.get());
+    public DateRangePicker(final Supplier<DateRangeModel<D>> initialModelSupplier) {
+        this(initialModelSupplier.get());
     }
 
-    public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModelSupplier, final D[] items) {
-        this(defaultModelSupplier.get(), items);
+    public DateRangePicker(final Supplier<DateRangeModel<D>> initialModelSupplier, final D[] items) {
+        this(initialModelSupplier.get(), items);
     }
 
-    public DateRangePicker(final Supplier<DateRangeModel<D>> defaultModelSupplier, final Collection<D> items) {
-        this(defaultModelSupplier.get(), items);
+    public DateRangePicker(final Supplier<DateRangeModel<D>> initialModelSupplier, final Collection<D> items) {
+        this(initialModelSupplier.get(), items);
     }
 
     // -- Initializers --
@@ -215,38 +220,20 @@ public class DateRangePicker<D extends DateRange> extends Composite<VerticalLayo
         this.formatLocale = Optional.ofNullable(VaadinService.getCurrentRequest().getLocale());
     }
 
+    @SneakyThrows
     protected void addClickOutsideListener() {
         if (!this.isCloseOnOutsideClick()) {
             return;
         }
 
-        final String funcName = "outsideClickFunc" + this.getId().get();
+        byte[] bytes = Files.readAllBytes(Objects.requireNonNull(this.classPathResource.getAsFile())
+                .toPath());
+        String jsFileRawContent = new String(bytes);
+        String thisId = this.getId().get();
 
-        // @formatter:off
-        final String jsCommand =
-                // Define Click-Function
-                "var " + funcName + " = function(event) {\r\n" +
-                        // Get the current Element
-                        "  var spEl = document.getElementById('" + this.getId().get() + "');\r\n" +
-                        "  if (!spEl) {\r\n" +
-                        // If the element got detached/removed, then als delete the listener of the base element
-                        "    document.removeEventListener('click'," + funcName + ")\r\n" +
-                        "    return;\r\n" +
-                        "  }\r\n" +
-                        // Check if a Vaadin overlay caused the click
-                        "  if(event.target.id == 'overlay') {\r\n" +
-                        "    return;\r\n" +
-                        "  }\r\n" +
-                        // Check if the click was done on this element
-                        "  var isClickInside = spEl.contains(event.target);\r\n" +
-                        "  if (!isClickInside) {\r\n" +
-                        "    spEl.$server.clickOutsideOccured()\r\n" +
-                        "  }\r\n" +
-                        "}; \r\n" +
-                        "document.body.addEventListener('click'," + funcName + ");";
-        // @formatter:on
+        String jsFileContent = jsFileRawContent.replaceAll("\\{ID}", thisId);
 
-        this.getContent().getElement().executeJs(jsCommand);
+        this.getContent().getElement().executeJs(jsFileContent);
     }
 
     @ClientCallable

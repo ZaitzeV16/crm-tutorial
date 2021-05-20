@@ -1,0 +1,15 @@
+var outsideClickFunc{ID} = function (event) {
+    var spEl = document.getElementById('{ID}');
+    if (!spEl) {
+        document.removeEventListener('click', outsideClickFunc{ID})
+        return;
+    }
+    if (event.target.id == 'overlay') {
+        return;
+    }
+    var isClickInside = spEl.contains(event.target);
+    if (!isClickInside) {
+        spEl.$server.clickOutsideOccurred()
+    }
+};
+document.body.addEventListener('click', outsideClickFunc{ID});
