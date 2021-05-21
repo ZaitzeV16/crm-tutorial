@@ -1,26 +1,26 @@
 package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateTimeRange.source;
 
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
- * Actions which can be done with a {@link DateRangeTimeModel}
+ * Actions which can be done with a {@link DateTimeRangeModel}
  *
- * @param <D> DateRange
- * @param <T> Implementer; returned as "Builder"
+ * @param <DATE_TIME_RANGE> DateTimeRange
+ * @param <SELF> Implementer; returned as "Builder"
  */
-public interface DateRangeTimeActions<D extends DateTimeRange, T> {
+public interface DateRangeTimeActions<DATE_TIME_RANGE extends DateTimeRange, SELF> {
 
-    LocalDate getStart();
+    LocalDateTime getStart();
 
-    T setStart(final LocalDate start);
+    SELF setStart(final LocalDateTime start);
 
-    LocalDate getEnd();
+    LocalDateTime getEnd();
 
-    T setEnd(final LocalDate end);
+    SELF setEnd(final LocalDateTime end);
 
-    D getDateRange();
+    DATE_TIME_RANGE getDateRange();
 
-    T setDateRange(final D dateRange);
+    SELF setStep(final DATE_TIME_RANGE step);
 
 }

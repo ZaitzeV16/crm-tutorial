@@ -1,7 +1,8 @@
 package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateTimeRange.source;
 
-import java.time.LocalDate;
-import java.time.Period;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateTimeRange.DateTimeStep;
+
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface DateTimeRange {
@@ -13,11 +14,11 @@ public interface DateTimeRange {
     String getKey();
 
     /**
-     * Returns the {@link Period} to move the date, if any
+     * Returns the {@link DateTimeStep} to move the date, if any
      *
-     * @return {@link Period} to move the date
+     * @return {@link DateTimeStep} to move the date
      */
-    Optional<Period> getOptMovePeriod();
+    Optional<DateTimeStep> getStep();
 
     /**
      * Retunns the default description, e.g. "Day" or "Half year"
@@ -27,21 +28,21 @@ public interface DateTimeRange {
     String getDefaultDescription();
 
     /**
-     * Trys to return the calculated {@link DateRangeTimeResult} for the supplied date
+     * Trys to return the calculated {@link DateTimeRangeResult} for the supplied dateTime
      *
-     * @param date date that is used for calculation
-     * @return calculated {@link DateRangeTimeResult}
+     * @param dateTime dateTime that is used for calculation
+     * @return calculated {@link DateTimeRangeResult}
      */
-    Optional<DateRangeTimeResult> calcFor(LocalDate date);
+    Optional<DateTimeRangeResult> calcFor(LocalDateTime dateTime);
 
     /**
-     * Trys to return a moved {@link DateRangeTimeResult}
+     * Trys to return a moved {@link DateTimeRangeResult}
      *
-     * @param baseDate Date that is used as a base
-     * @param dif      Count of moves
-     * @return moved {@link DateRangeTimeResult}
+     * @param baseDateTime Date that is used as a base
+     * @param diff      Count of moves
+     * @return moved {@link DateTimeRangeResult}
      */
-    Optional<DateRangeTimeResult> moveDateRange(LocalDate baseDate, int dif);
+    Optional<DateTimeRangeResult> moveByStep(LocalDateTime baseDateTime, int diff);
 
     /**
      * Returns if the {@link DateTimeRange} is movable<br>
@@ -67,7 +68,7 @@ public interface DateTimeRange {
      *
      * @return if the {@link DateTimeRange} is calcable
      */
-    boolean isCalcable();
+    boolean isCalculated();
 
     /**
      * Returns if the {@link DateTimeRange} is settable from a date<br>

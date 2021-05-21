@@ -1,33 +1,38 @@
 package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateTimeRange.source;
 
-import java.time.LocalDate;
-import java.time.Period;
+import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateTimeRange.DateTimeStep;
+import lombok.Getter;
+
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
- * Basic implementation of {@link DateTimeRange}
- *
  * @param <SELF> implementer
  */
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+@Getter
 public abstract class AbstractDateTimeTimeRange<SELF extends AbstractDateTimeTimeRange<SELF>> implements DateTimeRange {
+
     private String key;
-    private Optional<Period> optMovePeriod = Optional.empty();
-    private String defaultDesc;
-    private Function<LocalDate, Optional<DateRangeTimeResult>> calcForFunc;
-    private BiFunction<LocalDate, Integer, Optional<DateRangeTimeResult>> moveFunc = (date, count) ->
+    private String defaultDescription;
+
+    private Optional<DateTimeStep> step = Optional.empty();
+    private Function<LocalDateTime, Optional<DateTimeRangeResult>> stepCalcFunc;
+    private BiFunction<LocalDateTime, Integer, Optional<DateTimeRangeResult>> moveByStepFunc = (dateTime, count) ->
     {
-        if (this.optMovePeriod.isEmpty()) {
+        if (this.step.isEmpty()) {
             return Optional.empty();
         }
 
-        return this.calcForFunc.apply(count != 0 ? date.plus(this.optMovePeriod.get().multipliedBy(count)) : date);
+        LocalDateTime input = count != 0 ? dateTime.plus(this.step.get().multipliedBy(count)) : dateTime;
+        return this.stepCalcFunc.apply(input);
     };
+
     private boolean movable = true;
-    private boolean calcable = true;
-    private boolean setable = true;
+    private boolean calculated = true;
+    private boolean settable = true;
 
     @SuppressWarnings("unchecked")
     public SELF self() {
@@ -40,27 +45,27 @@ public abstract class AbstractDateTimeTimeRange<SELF extends AbstractDateTimeTim
         return this.self();
     }
 
-    public SELF withMovePeriod(final Period period) {
-        this.optMovePeriod = Optional.ofNullable(period);
+    public SELF withStep(final DateTimeStep Step) {
+        this.step = Optional.ofNullable(Step);
         return this.self();
     }
 
     public SELF withDefaultDesc(final String defaultDesc) {
-        this.defaultDesc = defaultDesc;
+        this.defaultDescription = defaultDesc;
         return this.self();
     }
 
-    public SELF withCalcForFunc(final Function<LocalDate, DateRangeTimeResult> calcForFunc) {
-        return this.withOptCalcForFunc(date -> Optional.ofNullable(calcForFunc.apply(date)));
+    public SELF withStepCalcFunc(final Function<LocalDateTime, DateTimeRangeResult> calcForFunc) {
+        return this.withOptStepCalcFunc(date -> Optional.ofNullable(calcForFunc.apply(date)));
     }
 
-    public SELF withOptCalcForFunc(final Function<LocalDate, Optional<DateRangeTimeResult>> calcForFunc) {
-        this.calcForFunc = calcForFunc;
+    public SELF withOptStepCalcFunc(final Function<LocalDateTime, Optional<DateTimeRangeResult>> stepCalcFunc) {
+        this.stepCalcFunc = stepCalcFunc;
         return this.self();
     }
 
-    public SELF withMoveFunc(final BiFunction<LocalDate, Integer, Optional<DateRangeTimeResult>> moveFunc) {
-        this.moveFunc = moveFunc;
+    public SELF withMoveByStepFunc(final BiFunction<LocalDateTime, Integer, Optional<DateTimeRangeResult>> moveByStepFunc) {
+        this.moveByStepFunc = moveByStepFunc;
         return this.self();
     }
 
@@ -69,83 +74,48 @@ public abstract class AbstractDateTimeTimeRange<SELF extends AbstractDateTimeTim
         return this.self();
     }
 
-    public SELF withCalcable(final boolean calcable) {
-        this.calcable = calcable;
+    public SELF withCalculated(final boolean calcable) {
+        this.calculated = calcable;
         return this.self();
     }
 
     public SELF withSettable(final boolean settable) {
-        this.setable = settable;
+        this.settable = settable;
         return this.self();
     }
 
     public SELF from(final AbstractDateTimeTimeRange<?> dateRange) {
         this.key = dateRange.getKey();
-        this.optMovePeriod = dateRange.getOptMovePeriod();
-        this.defaultDesc = dateRange.getDefaultDescription();
-        this.calcForFunc = dateRange.getCalcForFunc();
-        this.moveFunc = dateRange.getMoveFunc();
+        this.step = dateRange.getStep();
+        this.defaultDescription = dateRange.getDefaultDescription();
+        this.stepCalcFunc = dateRange.getStepCalcFunc();
+        this.moveByStepFunc = dateRange.getMoveByStepFunc();
         this.movable = dateRange.isMovable();
-        this.calcable = dateRange.isCalcable();
-        this.setable = dateRange.isSettable();
+        this.calculated = dateRange.isCalculated();
+        this.settable = dateRange.isSettable();
 
         return this.self();
     }
 
-    // -- GETTER
-
-    @Override
-    public String getKey() {
-        return this.key;
-    }
-
-    @Override
-    public Optional<Period> getOptMovePeriod() {
-        return this.optMovePeriod;
-    }
-
-    @Override
-    public String getDefaultDescription() {
-        return this.defaultDesc;
-    }
-
     @Override
     public boolean isMovable() {
-        return this.movable && this.isCalcable();
+        return this.movable && this.calculated;
     }
 
     @Override
-    public boolean isCalcable() {
-        return this.calcable;
-    }
-
-    @Override
-    public boolean isSettable() {
-        return this.setable;
-    }
-
-    public Function<LocalDate, Optional<DateRangeTimeResult>> getCalcForFunc() {
-        return this.calcForFunc;
-    }
-
-    public BiFunction<LocalDate, Integer, Optional<DateRangeTimeResult>> getMoveFunc() {
-        return this.moveFunc;
-    }
-
-    @Override
-    public Optional<DateRangeTimeResult> calcFor(final LocalDate date) {
-        if (!this.isCalcable()) {
+    public Optional<DateTimeRangeResult> calcFor(final LocalDateTime dateTime) {
+        if (!this.isCalculated()) {
             return Optional.empty();
         }
-        return this.calcForFunc.apply(date);
+        return this.stepCalcFunc.apply(dateTime);
     }
 
     @Override
-    public Optional<DateRangeTimeResult> moveDateRange(final LocalDate date, final int dif) {
+    public Optional<DateTimeRangeResult> moveByStep(final LocalDateTime baseDateTime, final int diff) {
         if (!this.isMovable()) {
             return Optional.empty();
         }
-        return this.moveFunc.apply(date, dif);
+        return this.moveByStepFunc.apply(baseDateTime, diff);
     }
 
 }

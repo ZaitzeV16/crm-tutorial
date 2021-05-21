@@ -2,55 +2,37 @@ package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateTimeRange.source;
 
 
 import com.vaadin.tutorial.crm.ui.base.dateRangePicker.DateRangePicker;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Model for {@link DateRangePicker}
  */
-public class DateRangeTimeModel<D extends DateTimeRange> implements DateRangeTimeActions<D, DateRangeTimeModel<D>> {
+@Getter
+@AllArgsConstructor
+public class DateTimeRangeModel<DATE_TIME_RANGE extends DateTimeRange> implements DateRangeTimeActions<DATE_TIME_RANGE, DateTimeRangeModel<DATE_TIME_RANGE>> {
 
-    private LocalDate start;
-    private LocalDate end;
-    private D dateRange;
-
-    public DateRangeTimeModel(final LocalDate start, final LocalDate end, final D dateRange) {
-        super();
-        this.start = start;
-        this.end = end;
-        this.dateRange = dateRange;
-    }
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private DATE_TIME_RANGE dateRange;
 
     @Override
-    public LocalDate getStart() {
-        return this.start;
-    }
-
-    @Override
-    public DateRangeTimeModel<D> setStart(final LocalDate start) {
+    public DateTimeRangeModel<DATE_TIME_RANGE> setStart(final LocalDateTime start) {
         this.start = start;
         return this;
     }
 
     @Override
-    public LocalDate getEnd() {
-        return this.end;
-    }
-
-    @Override
-    public DateRangeTimeModel<D> setEnd(final LocalDate end) {
+    public DateTimeRangeModel<DATE_TIME_RANGE> setEnd(final LocalDateTime end) {
         this.end = end;
         return this;
     }
 
     @Override
-    public D getDateRange() {
-        return this.dateRange;
-    }
-
-    @Override
-    public DateRangeTimeModel<D> setDateRange(final D dateRange) {
-        this.dateRange = dateRange;
+    public DateTimeRangeModel<DATE_TIME_RANGE> setStep(final DATE_TIME_RANGE step) {
+        this.dateRange = step;
         return this;
     }
 
@@ -78,7 +60,7 @@ public class DateRangeTimeModel<D extends DateTimeRange> implements DateRangeTim
             return false;
         }
 
-        final DateRangeTimeModel<?> other = (DateRangeTimeModel<?>) obj;
+        final DateTimeRangeModel<?> other = (DateTimeRangeModel<?>) obj;
         if (this.dateRange == null) {
             if (other.dateRange != null) {
                 return false;
