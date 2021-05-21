@@ -8,7 +8,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeModel;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.SimpleDateRange;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.SimpleDateRanges;
-import com.vaadin.tutorial.crm.ui.views.dateRangePicker.DateRangePicker;
+import com.vaadin.tutorial.crm.ui.base.dateRangePicker.DateRangePicker;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -46,14 +46,14 @@ public class DateRangeMaterial extends Composite<VerticalLayout> {
 
         this.dateRangePicker.addValueChangeListener(ev ->
         {
-            final DateRangeModel<SimpleDateRange> modell = ev.getValue();
+            final DateRangeModel<SimpleDateRange> model = ev.getValue();
 
             this.taResult.clear();
             // @formatter:off
             this.taResult.setValue(
-                    "DateRange: " + modell.getDateRange().getKey() + "\r\n" +
-                            "Start: " + modell.getStart() + "\r\n" +
-                            "End: " + modell.getEnd() + "\r\n" +
+                    "DateRange: " + model.getDateRange().getKey() + "\r\n" +
+                            "Start: " + model.getStart() + "\r\n" +
+                            "End: " + model.getEnd() + "\r\n" +
                             (ev.getOldValue() != null ?
                                     "OldValue-DateRange: " + ev.getOldValue().getDateRange().getKey() + "\r\n" +
                                             "OldValue-Start: " + ev.getOldValue().getStart() + "\r\n" +

@@ -1,7 +1,7 @@
 package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source;
 
 
-import com.vaadin.tutorial.crm.ui.views.dateRangePicker.DateRangePicker;
+import com.vaadin.tutorial.crm.ui.base.dateRangePicker.DateRangePicker;
 
 import java.time.LocalDate;
 
