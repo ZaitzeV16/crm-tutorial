@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "contacts", layout = MainLayout.class)
 @PageTitle("Contacts | Vaadin CRM")
 public class ListView extends VerticalLayout {
 

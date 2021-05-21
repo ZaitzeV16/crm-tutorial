@@ -2,14 +2,9 @@ package com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange;
 
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.DateRangeModel;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.SimpleDateRange;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.source.SimpleDateRanges;
@@ -20,10 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@Route(DateRangePickerStyledDemo.NAV)
-public class DateRangePickerStyledDemo extends Composite<VerticalLayout> {
-
-    public static final String NAV = "styled";
+@Route("styled")
+public class DateRangeMaterial extends Composite<VerticalLayout> {
 
     protected static final List<SimpleDateRange> DATE_RANGE_VALUES = Arrays.asList(SimpleDateRanges.allValues());
 
@@ -35,34 +28,19 @@ public class DateRangePickerStyledDemo extends Composite<VerticalLayout> {
     private final TextArea taResult =
             new TextArea("ValueChangeEvent", "Change something in the datepicker to see the result");
 
-    private final Button btnDarkMode = new Button("Toogle theme");
-
     /*
      * Fields
      */
 
-    public DateRangePickerStyledDemo() {
+    public DateRangeMaterial() {
         this.initUI();
     }
 
     protected void initUI() {
-        this.btnDarkMode.addClickListener(ev ->
-        {
-            final ThemeList themeList = UI.getCurrent().getElement().getThemeList();
-
-            if (themeList.contains(Lumo.DARK)) {
-                themeList.remove(Lumo.DARK);
-            } else {
-                themeList.add(Lumo.DARK);
-            }
-
-            this.updateBtnDarkMode();
-        });
-
         this.taResult.setSizeFull();
 
         this.getContent().setPadding(false);
-        this.getContent().add(new VerticalLayout(this.dateRangePicker), new VerticalLayout(this.taResult, this.btnDarkMode));
+        this.getContent().add(new VerticalLayout(this.dateRangePicker), new VerticalLayout(this.taResult));
         this.getContent().getChildren().forEach(comp -> ((HasSize) comp).setHeight("50%"));
         this.getContent().setHeightFull();
 
@@ -87,14 +65,6 @@ public class DateRangePickerStyledDemo extends Composite<VerticalLayout> {
             );
             // @formatter:on
         });
-
-        this.updateBtnDarkMode();
-    }
-
-    protected void updateBtnDarkMode() {
-        final boolean isDarkMode = UI.getCurrent().getElement().getThemeList().contains(Lumo.DARK);
-        this.btnDarkMode.setText(!isDarkMode ? "Enter the darkness" : "Turn the light on");
-        this.btnDarkMode.setIcon(!isDarkMode ? VaadinIcon.MOON_O.create() : VaadinIcon.SUN_O.create());
     }
 
 }
