@@ -6,15 +6,15 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.DateRangeMaterial;
 import com.vaadin.tutorial.crm.ui.MainLayout;
-import com.vaadin.tutorial.crm.ui.views.temporary.dateTimeRangePickerExample.MyDateRangePicker;
+import com.vaadin.tutorial.crm.ui.views.temporary.MyDateTimeRangePicker;
 
 @PageTitle("DateTimeRangePicker")
-@Route(value = "customDateTimeRangePicker", layout = MainLayout.class)
+@Route(value = "", layout = MainLayout.class)
 public class MyWorkbench extends VerticalLayout {
 
-    DateRangeMaterial dateRangeMaterial = new DateRangeMaterial();
+    DateRangeMaterial merged = new DateRangeMaterial();
 
-    MyDateRangePicker myDateRangePicker = new MyDateRangePicker();
+    MyDateTimeRangePicker material = new MyDateTimeRangePicker();
 
     public MyWorkbench() {
         this.addClassName("custom-date-time-range-picker");
@@ -27,13 +27,13 @@ public class MyWorkbench extends VerticalLayout {
 
     private VerticalLayout createMerged() {
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.add(this.dateRangeMaterial);
+        verticalLayout.add(this.merged);
         return verticalLayout;
     }
 
     private VerticalLayout createMaterials() {
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.add(this.myDateRangePicker);
+        verticalLayout.add(this.material);
         return verticalLayout;
     }
 

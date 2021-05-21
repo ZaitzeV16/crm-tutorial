@@ -12,9 +12,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
-import com.vaadin.tutorial.crm.backend.entity.pkgCalendar.dateRange.DateRangeMaterial;
 import com.vaadin.tutorial.crm.ui.views.dateTimeRangePicker.MyWorkbench;
-import com.vaadin.tutorial.crm.ui.views.temporary.dateTimeRangePickerExample.MyDateRangePicker;
+import com.vaadin.tutorial.crm.ui.views.temporary.MyDateTimeRangePicker;
 
 import static com.vaadin.tutorial.crm.ui.UiUtils.createDarkModeToggleButton;
 
@@ -55,18 +54,18 @@ public class MainLayout extends AppLayout {
 //        RouterLink listLink = new RouterLink("Contacts", ListView.class);
 //        RouterLink dashboard = new RouterLink("Dashboard", DashboardView.class);
 //        RouterLink calendarLink = new RouterLink("Calendar", FullCalendarView.class);
-        RouterLink dateRangePickerLink = new RouterLink("date-range picker demo", DateRangeMaterial.class);
-        RouterLink dateTimeRangePickerLink = new RouterLink("date-time-range picker demo", MyDateRangePicker.class);
-        RouterLink customDateTimeRangePickerLink = new RouterLink("saját date-time-range picker", MyWorkbench.class);
+//        RouterLink dateRangePickerLink = new RouterLink("date-range picker demo", DateRangeMaterial.class);
+        RouterLink dateTimeRangePickerLink = new RouterLink("date-time-range picker demo", MyDateTimeRangePicker.class);
+        RouterLink customDateTimeRangePickerLink = new RouterLink("saját basz", MyWorkbench.class);
 
-        dateRangePickerLink.setHighlightCondition(HighlightConditions.sameLocation());
+        customDateTimeRangePickerLink.setHighlightCondition(HighlightConditions.sameLocation());
 //        listLink.setHighlightCondition(HighlightConditions.sameLocation());
 
         VerticalLayout verticalLayout = new VerticalLayout(
 //                listLink,
 //                dashboard,
 //                calendarLink,
-                dateRangePickerLink,
+//                dateRangePickerLink,
                 dateTimeRangePickerLink,
                 customDateTimeRangePickerLink
         );

@@ -1,4 +1,4 @@
-package com.vaadin.tutorial.crm.ui.views.temporary.dateTimeRangePickerExample;
+package com.vaadin.tutorial.crm.ui.views.temporary;
 
 import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -12,15 +12,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @PageTitle("DateTimeRangePicker")
-@Route(value = "", layout = MainLayout.class)
-//public class DateTimeRangePickerExampleView extends Composite<VerticalLayout> {
-public class MyDateRangePicker extends VerticalLayout {
-//    private final Grid<Example> grExamples = new Grid<>();
+@Route(value = "DateTimeRangePicker", layout = MainLayout.class)
+public class MyDateTimeRangePicker extends VerticalLayout {
 
     MyDateTimePicker startPicker;
     MyDateTimePicker endPicker;
 
-    public MyDateRangePicker() {
+    public MyDateTimeRangePicker() {
         this.addClassName("date-time-range-picker");
 
         this.startPicker = this.initStartPicker();
